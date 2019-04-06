@@ -13,3 +13,5 @@ Log into Firebase `firebase login`
 Project Console: https://console.firebase.google.com/project/memoday-e29ea/overview
 
 Hosting URL: https://memoday-e29ea.firebaseapp.com
+
+Hotjar : https://insights.hotjar.com/sites/1270800/dashboard
