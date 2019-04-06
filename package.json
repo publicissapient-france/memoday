@@ -1,0 +1,19 @@
+{
+  "name": "memoday",
+  "version": "1.0.0",
+  "description": "Memoday",
+  "main": "index.js",
+  "scripts": {
+    "deploy": "firebase deploy"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/xebia-france/memoday.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/xebia-france/memoday/issues"
+  },
+  "homepage": "https://github.com/xebia-france/memoday#readme"
+}
