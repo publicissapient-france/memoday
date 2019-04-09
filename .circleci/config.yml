@@ -5,15 +5,41 @@ jobs:
       - image: circleci/node:10.15.3
     steps:
       - checkout
+      - run: cd web
       - restore_cache:
           keys:
-            - node_modules-{{ checksum "package.json" }}
-            - node_modules-
-      - run: cd web
+            - web-deps-{{ checksum "package.json" }}
+            - web-deps-
       - run: npm i
       - save_cache:
           paths:
             - node_modules
-          key: node_modules-{{ checksum "package.json" }}
+          key: web-deps-{{ checksum "package.json" }}
       - run: npm build
+  deploy:
+    docker:
+      - image: circleci/node:10.15.3
+    steps:
+      - checkout
+      - restore_cache:
+          keys:
+            - main-deps-{{ checksum "package.json" }}
+            - main-deps-
+      - run: npm i
+      - save_cache:
+          paths:
+            - node_modules
+          key: main-deps-{{ checksum "package.json" }}
+      - run: npm run deploy:hosting:ci
+
+workflows:
+  version: 2
+  jobs:
+    - build
+    - deploy:
+        requires:
+          - build
+      branches:
+        only:
+          - master
 
