@@ -12,8 +12,7 @@ jobs:
             - web-deps-
       - run: npm i
       - save_cache:
-          paths:
-            - node_modules
+          paths: node_modules
           key: web-deps-{{ checksum "package.json" }}
       - run: npm build
 
@@ -28,18 +27,17 @@ jobs:
             - main-deps-
       - run: npm i
       - save_cache:
-          paths:
-            - node_modules
+          paths: node_modules
           key: main-deps-{{ checksum "package.json" }}
       - run: npm run deploy:hosting:ci
 
 workflows:
   version: 2
   build-and-deploy:
-    - build
-    - deploy:
-        requires:
-          - build
-      branches:
-        only:
-          - master
+    jobs:
+      - build
+      - deploy:
+          requires: build
+        filters:
+          branches:
+            only: master
