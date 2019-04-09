@@ -15,7 +15,7 @@ jobs:
       - save_cache:
           paths: node_modules
           key: web-deps-{{ checksum "package.json" }}
-      - run: npm build
+      - run: npm run build
       - persist_to_workspace:
           root: dist
 
