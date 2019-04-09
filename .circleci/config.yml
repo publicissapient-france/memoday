@@ -12,8 +12,8 @@ jobs:
       - run: cd web
       - run: npm i
       - save_cache:
-        paths:
-          - node_modules
-        key: node_modules-{{ checksum "package.json" }}
+          paths:
+            - node_modules
+          key: node_modules-{{ checksum "package.json" }}
       - run: npm build
 
