@@ -4,7 +4,7 @@
 
 ## CI & CD
 * Commit to `master` triggers build and deploy on Hosting.
-* Commit on branche triggers build only (no deployment).
+* Commit on branch triggers build only (no deployment).
 
 ## Links
 
