@@ -5,8 +5,7 @@ jobs:
       - image: circleci/node:10.15.3
     working_directory: web
     steps:
-      - checkout:
-          path: web
+      - checkout
       - restore_cache:
           keys:
             - web-deps-{{ checksum "package.json" }}
