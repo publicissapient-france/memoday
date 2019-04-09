@@ -16,6 +16,7 @@ jobs:
             - node_modules
           key: web-deps-{{ checksum "package.json" }}
       - run: npm build
+
   deploy:
     docker:
       - image: circleci/node:10.15.3
@@ -34,7 +35,7 @@ jobs:
 
 workflows:
   version: 2
-  jobs:
+  build-and-deploy:
     - build
     - deploy:
         requires:
@@ -42,4 +43,3 @@ workflows:
       branches:
         only:
           - master
-
