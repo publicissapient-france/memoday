@@ -16,7 +16,7 @@ jobs:
           key: web-deps-{{ checksum "package.json" }}
       - run: npm build
       - persist_to_workspace:
-          root: dist
+          root: web/dist
 
   deploy:
     docker:
