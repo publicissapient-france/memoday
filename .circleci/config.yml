@@ -3,9 +3,10 @@ jobs:
   build:
     docker:
       - image: circleci/node:10.15.3
+    working_directory: web
     steps:
       - checkout
-      - run: cd web
+          path: web
       - restore_cache:
           keys:
             - web-deps-{{ checksum "package.json" }}
@@ -15,9 +16,8 @@ jobs:
           paths: node_modules
           key: web-deps-{{ checksum "package.json" }}
       - run: npm build
-      - run: ls
       - persist_to_workspace:
-          root: web/dist
+          root: dist
 
   deploy:
     docker:
