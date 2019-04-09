@@ -15,7 +15,7 @@ jobs:
           paths: node_modules
           key: web-deps-{{ checksum "package.json" }}
       - run: npm build
-      - run: pwd
+      - run: ls
       - persist_to_workspace:
           root: web/dist
 
