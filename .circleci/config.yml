@@ -17,13 +17,17 @@ jobs:
           key: web-deps-{{ checksum "package.json" }}
       - run: npm run build
       - persist_to_workspace:
-          root: dist
+          root: ./
+          paths: 
+            - dist
 
   deploy:
+    working_directory: ~/app
     docker:
       - image: circleci/node:10.15.3
     steps:
-      - checkout
+      - checkout:
+          path: ~/app
       - restore_cache:
           keys:
             - main-deps-{{ checksum "package.json" }}
@@ -33,7 +37,7 @@ jobs:
           paths: node_modules
           key: main-deps-{{ checksum "package.json" }}
       - attach_workspace:
-          at: web/dist
+          at: ~/app/web
       - run: npm run deploy:hosting:ci
 
 workflows:
