@@ -1,11 +1,12 @@
 version: 2
 jobs:
   build:
+    working_directory: ~/app/web
     docker:
       - image: circleci/node:10.15.3
-    working_directory: web
     steps:
-      - checkout
+      - checkout:
+          path: ~/app
       - restore_cache:
           keys:
             - web-deps-{{ checksum "package.json" }}
