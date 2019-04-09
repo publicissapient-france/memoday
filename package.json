@@ -16,5 +16,10 @@
   "bugs": {
     "url": "https://github.com/xebia-france/memoday/issues"
   },
-  "homepage": "https://github.com/xebia-france/memoday#readme"
+  "homepage": "https://github.com/xebia-france/memoday#readme",
+  "devDependencies": {
+    "firebase-tools": "^6.6.0",
+    "tslint": "^5.15.0",
+    "typescript": "^3.4.2"
+  }
 }
