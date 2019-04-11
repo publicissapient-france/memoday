@@ -1,6 +1,7 @@
 import {AppState} from '../type-defs';
 
 export const getters = {
-  userDetail: (state: AppState): any => state.userDetail,
-    isLogged: (state: AppState): boolean => (state.userDetail !== null),
+    value: (state: AppState): number => state.value,
+    user: (state: AppState): any => state.user,
+    isLogged: (state: AppState): boolean => (state.user !== null),
 };

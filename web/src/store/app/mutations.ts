@@ -1,7 +1,10 @@
 import {AppState, MutationTypes} from '../type-defs';
 
 export const mutations = {
-    [MutationTypes.SET_USER](state: AppState, userDetail: any): void {
-        state.userDetail = userDetail;
+    [MutationTypes.ADD_VALUE](state: AppState, value: any): void {
+        state.value += value;
+    },
+    [MutationTypes.SET_USER](state: AppState, user: any): void {
+        state.user = user;
     },
 };

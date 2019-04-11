@@ -12,7 +12,7 @@
             auth.authForm('#firebaseui-auth-container');
         },
         computed: {
-            ...mapGetters('app', ['userDetail']),
+            ...mapGetters('app', ['user']),
         },
     };
 </script>

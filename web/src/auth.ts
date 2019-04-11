@@ -1,5 +1,4 @@
-import firebase from 'firebase/app';
-import 'firebase/auth';
+import firebase from 'firebase';
 import firebaseui from 'firebaseui';
 
 const config = {
@@ -27,7 +26,7 @@ class Auth {
         this.ui = new firebaseui.auth.AuthUI(firebase.auth());
 
         firebase.auth().onAuthStateChanged((user) => {
-            this.context.$store.dispatch('app/setCurrentUser', user);
+            this.context.$store.dispatch('app/setCurrentUser', {user: this.user()});
         });
     }
 
