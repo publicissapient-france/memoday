@@ -6,6 +6,9 @@
         <span class="font-weight-light">MATERIAL DESIGN</span>
       </v-toolbar-title>
       <v-spacer></v-spacer>
+      <router-link to="/">Home</router-link> |
+      <router-link to="/about">About</router-link> |
+      <router-link to="/login">Login</router-link>
       <v-btn
         flat
         href="https://github.com/vuetifyjs/vuetify/releases/latest"
@@ -15,7 +18,7 @@
     </v-toolbar>
 
     <v-content>
-      <HelloWorld/>
+      <router-view/>
     </v-content>
   </v-app>
 </template>
