@@ -1,6 +1,5 @@
-import {AppState} from "../type-defs";
+import {AppState} from '../type-defs';
 
 export const state: AppState = {
-    value: 0,
     user: null,
 };
