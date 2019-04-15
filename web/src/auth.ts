@@ -33,7 +33,7 @@ class Auth {
         this.ui.start(container, this.uiConfig);
     }
 
-    public user() {
+    public user(): firebase.User | null {
         return this.context ? firebase.auth().currentUser : null;
     }
 
