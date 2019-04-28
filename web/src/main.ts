@@ -6,6 +6,8 @@ import store from './store/index';
 import './registerServiceWorker';
 import auth from './auth';
 
+import '@/assets/style.scss';
+
 Vue.config.productionTip = false;
 
 new Vue({

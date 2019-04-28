@@ -1,3 +1,5 @@
+import '@/assets/style.scss';
+
 /* eslint-disable import/no-extraneous-dependencies */
 import {configure} from '@storybook/vue';
 
