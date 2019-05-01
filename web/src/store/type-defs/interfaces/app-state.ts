@@ -1,3 +1,3 @@
 export interface AppState {
-    userDetail: firebase.User | null;
+    user: firebase.User | null;
 }

@@ -1,4 +1,5 @@
-import firebase from 'firebase';
+import firebase from 'firebase/app';
+import 'firebase/auth';
 import firebaseui from 'firebaseui';
 
 const firebaseConfiguration = {
@@ -25,16 +26,12 @@ class Auth {
         };
         this.ui = new firebaseui.auth.AuthUI(firebase.auth());
 
-        firebase.auth().onAuthStateChanged(() =>
-            this.context.$store.dispatch('app/setCurrentUser', {user: this.user()}));
+        firebase.auth().onAuthStateChanged((user) =>
+            this.context.$store.dispatch('app/setCurrentUser', user));
     }
 
     public authForm(container: any) {
         this.ui.start(container, this.uiConfig);
-    }
-
-    public user(): firebase.User | null {
-        return this.context ? firebase.auth().currentUser : null;
     }
 
 }

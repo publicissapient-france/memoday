@@ -6,6 +6,6 @@ export const actions = {
     setCurrentUser,
 };
 
-function setCurrentUser({ commit, dispatch, state}: ActionContext<AppState, any>, userDetail: any): void {
-    commit(MutationTypes.SET_USER, userDetail);
+function setCurrentUser({ commit, dispatch, state}: ActionContext<AppState, any>, user: firebase.User): void {
+    commit(MutationTypes.SET_USER, user);
 }
