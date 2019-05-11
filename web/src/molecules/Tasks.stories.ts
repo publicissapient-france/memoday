@@ -1,5 +1,5 @@
 import {storiesOf} from '@storybook/vue';
-import Tasks from '@/organisms/Tasks';
+import Tasks from './Tasks.vue';
 import Vue from 'vue';
 
 Vue.component('Tasks', Tasks);
@@ -15,7 +15,7 @@ const tasks = [
   },
 ];
 
-storiesOf('Organisms | Tasks', module)
+storiesOf('Molecules | Tasks', module)
   .add('with one task', () => ({
     data() {
       return {

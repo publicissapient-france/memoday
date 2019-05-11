@@ -1,7 +1,7 @@
 <template>
-  <div>
+  <div class="tasks-by-days">
     <div v-for="d in Object.keys(tasksByDays)" :key="d.key">
-      <h2>{{getDayNameHeader(tasksByDays[d][0].date)}}</h2>
+      <h2>{{getDayNameHeader(tasksByDays[d][0].date)}} <span>{{formatDay(tasksByDays[d][0].date)}}</span></h2>
       <tasks :tasks="tasksByDays[d]"></tasks>
     </div>
   </div>
@@ -10,17 +10,16 @@
 <script lang="ts">
   import Vue from 'vue';
   import {Component, Prop} from 'vue-property-decorator';
-  import {parse, isAfter, differenceInCalendarDays, isToday, isYesterday, getDay} from 'date-fns';
+  import {parse, isAfter, differenceInCalendarDays, isToday, isYesterday, getDay, format} from 'date-fns';
 
   const DAY_OF_WEEK = [
-    null, // Days in Date begin at 1
+    'Sunday',
     'Monday',
     'Tuesday',
     'Wednesday',
     'Thursday',
     'Friday',
     'Saturday',
-    'Sunday',
   ];
 
   @Component
@@ -58,9 +57,20 @@
       }
       return DAY_OF_WEEK[getDay(day)];
     }
+
+    formatDay(day: Date) {
+      return format(day, 'D MMM');
+    }
   }
 </script>
 
-<style scoped>
-
+<style scoped lang="scss">
+  h2 {
+    margin-top: 5px;
+    span {
+      color: #ababab;
+      font-family: 'Open Sans', sans-serif;
+      font-size: 14px;
+    }
+  }
 </style>

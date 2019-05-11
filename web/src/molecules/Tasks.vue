@@ -1,6 +1,6 @@
 <template>
   <ul>
-    <li v-for="t in tasks" :key="t.id">{{t.name}}</li>
+    <task v-for="t in tasks" :key="t.id">{{t.name}}</task>
   </ul>
 </template>
 
@@ -22,7 +22,7 @@
     list-style: none;
   }
 
-  li {
+  .task {
     border-bottom: solid 1px;
     border-color: #f1f1f1;
     padding-bottom: 5px;
