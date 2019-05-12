@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width,initial-scale=1.0">
   <link rel="icon" href="<%= BASE_URL %>favicon.ico">
   <title>MemoDay</title>
-  <link type="text/css" rel="stylesheet" href="https://cdn.firebase.com/libs/firebaseui/3.6.1/firebaseui.css" />
+  <link type="text/css" rel="stylesheet" href="https://cdn.firebase.com/libs/firebaseui/3.6.1/firebaseui.css"/>
 </head>
 <body>
 <noscript>
@@ -14,5 +14,10 @@
 </noscript>
 <div id="app"></div>
 <!-- built files will be auto injected -->
+<script lang="js">
+  if (location.pathname === '/index.html') {
+    location.href = '/';
+  }
+</script>
 </body>
 </html>
