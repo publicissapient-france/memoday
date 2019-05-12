@@ -1,6 +1,6 @@
 {
-  "name": "web",
-  "short_name": "web",
+  "name": "MemoDay",
+  "short_name": "MemoDay",
   "icons": [
     {
       "src": "./img/icons/android-chrome-192x192.png",

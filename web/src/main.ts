@@ -6,13 +6,15 @@ import store from './store/index';
 import './registerServiceWorker';
 import auth from './auth';
 
+import '@/assets/style.scss';
+
 Vue.config.productionTip = false;
 
 new Vue({
-    router,
-    store,
-    render: (h) => h(App),
-    beforeCreate() {
-        auth.init(this);
-    },
+  router,
+  store,
+  render: (h) => h(App),
+  beforeCreate() {
+    auth.init(this);
+  },
 }).$mount('#app');
