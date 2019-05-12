@@ -12,11 +12,13 @@
   import Vue from 'vue';
   import {VIcon, VBtn} from 'vuetify/lib';
   import {Prop} from 'vue-property-decorator';
+  import TaskInput from '@/atoms/TaskInput.vue';
 
   @Component({
     components: {
       VIcon,
       VBtn,
+      TaskInput,
     },
   })
   export default class SubmitTask extends Vue {

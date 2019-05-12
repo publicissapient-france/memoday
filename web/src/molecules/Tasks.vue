@@ -7,8 +7,13 @@
 <script lang="ts">
   import Vue from 'vue';
   import {Component, Prop} from 'vue-property-decorator';
+  import Task from '@/atoms/Task.vue';
 
-  @Component
+  @Component({
+    components: {
+      Task,
+    },
+  })
   export default class Tasks extends Vue {
     @Prop()
     tasks: Task[];

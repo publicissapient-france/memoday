@@ -1,8 +1,10 @@
 <template>
   <div class="tasks-by-days">
-    <div v-for="d in Object.keys(tasksByDays)" :key="d.key">
-      <h2>{{getDayNameHeader(tasksByDays[d][0].date)}} <span>{{formatDay(tasksByDays[d][0].date)}}</span></h2>
-      <tasks :tasks="tasksByDays[d]"></tasks>
+    <div v-if="tasks.length > 0">
+      <div v-for="d in Object.keys(tasksByDays)" :key="d.key">
+        <h2>{{getDayNameHeader(tasksByDays[d][0].date)}} <span>{{formatDay(tasksByDays[d][0].date)}}</span></h2>
+        <tasks :tasks="tasksByDays[d]"></tasks>
+      </div>
     </div>
   </div>
 </template>
@@ -11,6 +13,7 @@
   import Vue from 'vue';
   import {Component, Prop} from 'vue-property-decorator';
   import {parse, isAfter, differenceInCalendarDays, isToday, isYesterday, getDay, format} from 'date-fns';
+  import Tasks from '@/molecules/Tasks.vue';
 
   const DAY_OF_WEEK = [
     'Sunday',
@@ -22,7 +25,11 @@
     'Saturday',
   ];
 
-  @Component
+  @Component({
+    components: {
+      Tasks,
+    },
+  })
   export default class TasksByDays extends Vue {
     @Prop()
     tasks: Task[];
@@ -66,7 +73,9 @@
 
 <style scoped lang="scss">
   h2 {
-    margin-top: 5px;
+    margin-top: 10px;
+    margin-bottom: 15px;
+
     span {
       color: #ababab;
       font-family: 'Open Sans', sans-serif;
