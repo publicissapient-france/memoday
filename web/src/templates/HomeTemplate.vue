@@ -31,16 +31,21 @@
 
 <style scoped lang="scss">
   .home-with-data {
-    height: 100vh;
-    overflow: scroll;
+
   }
 
   .tasks-by-days {
     padding: 10px 0 50px 10px;
-    flex-grow: 1;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    max-height: 93%;
+    overflow: scroll;
   }
 
   .submit-task {
+    height: 50px;
     position: absolute;
     bottom: 0;
     left: 0;
