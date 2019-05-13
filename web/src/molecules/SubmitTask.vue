@@ -28,8 +28,10 @@
     task = '';
 
     onClick() {
-      this.onSubmit(this.task);
-      this.task = '';
+      if (this.task.trim().length > 0) {
+        this.onSubmit(this.task);
+        this.task = '';
+      }
     }
   }
 </script>
