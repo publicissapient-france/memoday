@@ -63,6 +63,9 @@ storiesOf('Template | Home', module)
           submitTask(task: string) {
             action('submitTask')(task);
           },
+          onTaskClick(id: string) {
+            action('onTaskClick')(id);
+          },
         },
       };
     },

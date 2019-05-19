@@ -1,16 +1,19 @@
 <template>
-  <div class="task">
+  <div class="task" @click="click">
     <b-icon type="is-info" icon="checkbox-marked-circle" size="is-small"></b-icon>
     <span class="name"><slot></slot></span>
   </div>
 </template>
 
-<script>
+<script lang="ts">
   import Component from 'vue-class-component/lib/index';
   import Vue from 'vue';
+  import {Prop} from 'vue-property-decorator';
 
   @Component
   export default class Task extends Vue {
+    @Prop()
+    click: () => void;
   }
 </script>
 

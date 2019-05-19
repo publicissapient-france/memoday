@@ -1,7 +1,7 @@
 <template>
   <div class="home">
     <div v-if="data" class="home-with-data">
-      <tasks-by-days :tasks="data.tasks" :day="data.day"></tasks-by-days>
+      <tasks-by-days :tasks="data.tasks" :day="data.day" :onTaskClick="actions.onTaskClick"></tasks-by-days>
       <submit-task :onSubmit="actions.submitTask"></submit-task>
     </div>
   </div>
@@ -30,10 +30,6 @@
 </script>
 
 <style scoped lang="scss">
-  .home-with-data {
-
-  }
-
   .tasks-by-days {
     padding: 10px 0 50px 10px;
     position: absolute;

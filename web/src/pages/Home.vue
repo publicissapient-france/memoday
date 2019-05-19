@@ -9,6 +9,7 @@
   import Vue from 'vue';
   import HomeTemplate from '@/templates/HomeTemplate.vue';
   import {TaskModule} from '@/store/task';
+  import router from '@/router';
 
   @Component({
     components: {
@@ -26,6 +27,9 @@
     actions = {
       submitTask: async (task: string) => {
         return await TaskModule.submitTask(task);
+      },
+      onTaskClick: (id: string) => {
+        router.push(`edit/${id}`);
       },
     };
 
