@@ -1,23 +1,18 @@
 <template>
   <div class="submit-task">
     <task-input v-model="task"/>
-    <v-btn flat icon color="deep-purple" @click="onClick">
-      <v-icon>send</v-icon>
-    </v-btn>
+    <b-button type="is-primary" icon-right="send" @click="onClick"/>
   </div>
 </template>
 
 <script lang="ts">
   import Component from 'vue-class-component';
   import Vue from 'vue';
-  import {VIcon, VBtn} from 'vuetify/lib';
   import {Prop} from 'vue-property-decorator';
   import TaskInput from '@/atoms/TaskInput.vue';
 
   @Component({
     components: {
-      VIcon,
-      VBtn,
       TaskInput,
     },
   })
@@ -44,6 +39,7 @@
     align-items: center;
     border-top: 1px solid #f1f1f1;
     background-color: #fff;
+    margin-right: 5px;
   }
 
   .task-input {

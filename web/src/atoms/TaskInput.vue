@@ -32,6 +32,7 @@
     word-break: break-word;
     resize: none;
     height: 50px;
+    font-size: 1rem;
 
     &:focus {
       outline: none;

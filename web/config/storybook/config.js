@@ -1,14 +1,6 @@
-import "@/plugins/vuetify";
 import '@/assets/style.scss';
-import Vue from 'vue';
-import {addDecorator, configure} from '@storybook/vue';
-import {VApp} from 'vuetify/lib';
-
-Vue.component('VApp', VApp);
-
-addDecorator(() => ({
-  template: "<v-app><story/></v-app>"
-}));
+import '@/buefy';
+import {configure} from '@storybook/vue';
 
 const req = require.context('../../src', true, /.stories.ts$/);
 

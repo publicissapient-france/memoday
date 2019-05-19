@@ -1,12 +1,11 @@
 import Vue from 'vue';
-import './plugins/vuetify';
+import './buefy';
+import './registerServiceWorker';
+import '@/assets/style.scss';
 import App from './App.vue';
+import auth from './auth';
 import router from './router';
 import store from './store/index';
-import './registerServiceWorker';
-import auth from './auth';
-
-import '@/assets/style.scss';
 
 Vue.config.productionTip = false;
 
