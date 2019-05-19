@@ -1,19 +1,15 @@
 <template>
   <div class="task">
-    <v-icon small>check_circle_outline</v-icon><span class="name"><slot></slot></span>
+    <b-icon type="is-info" icon="checkbox-marked-circle" size="is-small"></b-icon>
+    <span class="name"><slot></slot></span>
   </div>
 </template>
 
 <script>
   import Component from 'vue-class-component/lib/index';
-  import {VIcon} from 'vuetify/lib';
   import Vue from 'vue';
 
-  @Component({
-    components: {
-      VIcon,
-    },
-  })
+  @Component
   export default class Task extends Vue {
   }
 </script>
@@ -24,6 +20,7 @@
     align-items: center;
     margin-top: 5px;
   }
+
   .name {
     margin-left: 5px;
   }
