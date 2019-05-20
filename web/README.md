@@ -1,5 +1,9 @@
 # web
 
+## Design
+
+Font for logo: `Montez`
+
 ## Project setup
 ```
 npm install
