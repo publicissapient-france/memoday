@@ -3,7 +3,7 @@
     <div v-if="tasks.length > 0">
       <div v-for="d in Object.keys(tasksByDays)" :key="d.key">
         <h2>{{getDayNameHeader(tasksByDays[d][0].date)}} <span>{{formatDay(tasksByDays[d][0].date)}}</span></h2>
-        <tasks :tasks="tasksByDays[d]"></tasks>
+        <tasks :tasks="tasksByDays[d]" :onTaskClick="onTaskClick"></tasks>
       </div>
     </div>
   </div>
@@ -32,7 +32,10 @@
   })
   export default class TasksByDays extends Vue {
     @Prop()
-    tasks: Task[];
+    tasks: TTask[];
+
+    @Prop()
+    onTaskClick: (id: string) => void;
 
     @Prop({default: () => new Date()})
     day: Date;
@@ -52,7 +55,7 @@
           entry.push(b);
         }
         return a;
-      }, ({} as Record<string, Task[]>));
+      }, ({} as Record<string, TTask[]>));
     }
 
     getDayNameHeader(day: Date) {

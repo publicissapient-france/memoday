@@ -6,7 +6,8 @@ import {UserModule} from '@/store/user';
 
 @Module({name: 'task', store, dynamic: true})
 class Task extends VuexModule {
-  tasks: any[] = [];
+  tasks: TTask[] = [];
+  task: TTask | null = null;
 
   @Action({commit: 'ADD_TASK'})
   async submitTask(task: string) {
@@ -49,6 +50,53 @@ class Task extends VuexModule {
   @Mutation
   TASKS_FETCHED(tasks: any[]) {
     this.tasks = [...tasks];
+  }
+
+  @Mutation
+  TASK_SAVED() {
+    // Does nothing
+  }
+
+  @Mutation
+  TASK_GET(task: TTask) {
+    this.task = task;
+  }
+
+  @Mutation
+  DEL_TASK(id: string) {
+    const index = this.tasks.findIndex((t) => t.id === id);
+    const tasks = [...this.tasks];
+    tasks.splice(index, 1);
+    this.tasks = tasks;
+  }
+
+  @Action({commit: 'TASK_SAVED'})
+  async save(task: TTask) {
+    const id = task.id;
+    delete task.id;
+    await firebase.firestore().collection(UserModule.user.uid).doc(id).update(task);
+    task.id = id;
+    return task;
+  }
+
+  @Action({commit: 'TASK_GET'})
+  async getTask(id: string) {
+    let task = this.tasks.find((t) => t.id === id);
+    if (task) {
+      return task;
+    }
+    const tasks = await this.fetchTasks();
+    task = tasks.find((t) => t.id === id);
+    if (task) {
+      return task;
+    }
+    throw Error(`getTask: cannot find task ${id}`);
+  }
+
+  @Action({commit: 'DEL_TASK'})
+  async del(id: string) {
+    await firebase.firestore().collection(UserModule.user.uid).doc(id).delete();
+    return id;
   }
 }
 

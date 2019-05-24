@@ -39,7 +39,7 @@
     align-items: center;
     border-top: 1px solid #f1f1f1;
     background-color: #fff;
-    margin-right: 5px;
+    margin-right: 10px;
   }
 
   .task-input {

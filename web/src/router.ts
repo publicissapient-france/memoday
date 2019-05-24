@@ -1,8 +1,8 @@
 import Vue from 'vue';
 import Router, {Route} from 'vue-router';
 import Home from './pages/Home.vue';
-import Login from './pages/Login.vue';
 import {UserModule} from '@/store/user';
+import Edit from '@/pages/Edit.vue';
 
 Vue.use(Router);
 
@@ -17,8 +17,12 @@ const router = new Router({
     {
       path: '/login',
       name: 'Login',
-      component: Login,
-      meta: {guestOnly: true},
+      component: () => import(/* webpackChunkName: "login" */'@/pages/Login.vue'),
+    },
+    {
+      path: '/edit/:id',
+      name: 'Edit',
+      component: () => import(/* webpackChunkName: "edit" */'@/pages/Edit.vue'),
     },
   ],
 });

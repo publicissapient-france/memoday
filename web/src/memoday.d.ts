@@ -1,5 +1,5 @@
-interface Task {
+interface TTask {
   name: string;
   id: string;
-  date: string | Date; // ISO 8601
+  date: Date; // ISO 8601
 }

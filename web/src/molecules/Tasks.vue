@@ -1,6 +1,6 @@
 <template>
   <ul>
-    <task v-for="t in tasks" :key="t.id">{{t.name}}</task>
+    <task v-for="t in tasks" :key="t.id" :click="() => onTaskClick(t.id)">{{t.name}}</task>
   </ul>
 </template>
 
@@ -17,6 +17,9 @@
   export default class Tasks extends Vue {
     @Prop()
     tasks: Task[];
+
+    @Prop()
+    onTaskClick: (id: string) => void;
   }
 </script>
 
