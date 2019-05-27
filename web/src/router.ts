@@ -1,8 +1,7 @@
 import Vue from 'vue';
-import Router, {Route} from 'vue-router';
+import Router, { Route } from 'vue-router';
 import Home from './pages/Home.vue';
-import {UserModule} from '@/store/user';
-import Edit from '@/pages/Edit.vue';
+import { UserModule } from '@/store/user';
 
 Vue.use(Router);
 
@@ -24,6 +23,11 @@ const router = new Router({
       name: 'Edit',
       component: () => import(/* webpackChunkName: "edit" */'@/pages/Edit.vue'),
     },
+    {
+      path: '/notification',
+      name: 'Notification',
+      component: () => import(/* webpackChunkName: "notification-permission" */'@/pages/NotificationPermission.vue'),
+    },
   ],
 });
 
@@ -33,6 +37,12 @@ router.beforeEach((to: Route, from: Route, next: any) => {
   } else if (!UserModule.isLogged) {
     next({
       path: '/login',
+    });
+  } else if (to.path === '/notification') {
+    next();
+  } else if (!UserModule.isNotificationPermissionAsked) {
+    next({
+      path: '/notification',
     });
   } else {
     next();

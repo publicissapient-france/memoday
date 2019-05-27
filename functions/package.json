@@ -4,13 +4,11 @@
     "lint": "tslint --project tsconfig.json",
     "build": "tsc",
     "serve": "npm run build && firebase serve --only functions",
-    "shell": "npm run build && firebase functions:shell",
-    "start": "npm run shell",
-    "deploy": "firebase deploy --only functions",
-    "logs": "firebase functions:log"
+    "shell": "npm run build && firebase functions:shell"
   },
   "main": "lib/index.js",
   "dependencies": {
+    "cors": "^2.8.5",
     "firebase-admin": "~7.0.0",
     "firebase-functions": "^2.2.0"
   },
