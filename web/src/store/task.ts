@@ -1,5 +1,4 @@
 import {Action, getModule, Module, Mutation, VuexModule} from 'vuex-module-decorators';
-import 'firebase/firestore';
 import firebase from 'firebase/app';
 import store from '@/store';
 import {UserModule} from '@/store/user';

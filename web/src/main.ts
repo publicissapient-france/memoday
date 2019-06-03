@@ -2,6 +2,7 @@ import Vue from 'vue';
 import './buefy';
 import './registerServiceWorker';
 import '@/assets/style.scss';
+import '@/firebase';
 import App from './App.vue';
 import auth from './auth';
 import router from './router';
