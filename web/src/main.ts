@@ -7,6 +7,7 @@ import App from './App.vue';
 import auth from './auth';
 import router from './router';
 import store from './store/index';
+import messaging from '@/messaging';
 
 Vue.config.productionTip = false;
 
@@ -16,5 +17,6 @@ new Vue({
   render: (h) => h(App),
   beforeCreate() {
     auth.init(this);
+    messaging.init();
   },
 }).$mount('#app');

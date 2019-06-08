@@ -1,14 +1,14 @@
 import {Action, getModule, Module, Mutation, VuexModule} from 'vuex-module-decorators';
 import firebase from 'firebase/app';
 import store from '@/store';
-import {UserModule} from '@/store/user';
+import { UserModule } from '@/store/user';
 
-@Module({name: 'task', store, dynamic: true})
+@Module({ name: 'task', store, dynamic: true })
 class Task extends VuexModule {
   tasks: TTask[] = [];
   task: TTask | null = null;
 
-  @Action({commit: 'ADD_TASK'})
+  @Action({ commit: 'ADD_TASK' })
   async submitTask(task: string) {
     const data = {
       name: task,
@@ -24,7 +24,7 @@ class Task extends VuexModule {
     throw Error('submitTask: user is not logged');
   }
 
-  @Action({commit: 'TASKS_FETCHED'})
+  @Action({ commit: 'TASKS_FETCHED' })
   async fetchTasks() {
     if (UserModule.user) {
       const querySnapshot = await firebase.firestore().collection(UserModule.user.uid).get();
@@ -69,7 +69,7 @@ class Task extends VuexModule {
     this.tasks = tasks;
   }
 
-  @Action({commit: 'TASK_SAVED'})
+  @Action({ commit: 'TASK_SAVED' })
   async save(task: TTask) {
     const id = task.id;
     delete task.id;
@@ -78,7 +78,7 @@ class Task extends VuexModule {
     return task;
   }
 
-  @Action({commit: 'TASK_GET'})
+  @Action({ commit: 'TASK_GET' })
   async getTask(id: string) {
     let task = this.tasks.find((t) => t.id === id);
     if (task) {
@@ -92,7 +92,7 @@ class Task extends VuexModule {
     throw Error(`getTask: cannot find task ${id}`);
   }
 
-  @Action({commit: 'DEL_TASK'})
+  @Action({ commit: 'DEL_TASK' })
   async del(id: string) {
     await firebase.firestore().collection(UserModule.user.uid).doc(id).delete();
     return id;

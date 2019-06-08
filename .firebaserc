@@ -1,5 +1,6 @@
 {
   "projects": {
-    "default": "memoday-e29ea"
+    "default": "memoday-e29ea",
+    "dev": "memoday-dev"
   }
 }
