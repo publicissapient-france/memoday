@@ -8,7 +8,7 @@
     "deploy:functions:dev": "firebase use dev && firebase deploy --only functions",
     "deploy:hosting": "firebase use default && firebase deploy --only hosting",
     "deploy:hosting:dev": "firebase use dev && npm run deploy:hosting",
-    "deploy:hosting:ci": "firebase deploy --only hosting --token=$FIREBASE_TOKEN"
+    "deploy:hosting:ci": "firebase use default && firebase deploy --only hosting --token=$FIREBASE_TOKEN"
   },
   "repository": {
     "type": "git",
