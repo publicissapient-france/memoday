@@ -1,7 +1,7 @@
 <template>
   <div class="submit-task">
     <task-input v-model="task"/>
-    <b-button type="is-primary" icon-right="send" @click="onClick"/>
+    <b-button type="is-primary" icon-right="send" @click="onClick"></b-button>
   </div>
 </template>
 
@@ -39,7 +39,7 @@
     align-items: center;
     border-top: 1px solid #f1f1f1;
     background-color: #fff;
-    margin-right: 10px;
+    padding-right: 10px;
   }
 
   .task-input {
