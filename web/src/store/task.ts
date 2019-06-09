@@ -1,12 +1,31 @@
-import {Action, getModule, Module, Mutation, VuexModule} from 'vuex-module-decorators';
+import { Action, getModule, Module, Mutation, VuexModule } from 'vuex-module-decorators';
 import firebase from 'firebase/app';
 import store from '@/store';
 import { UserModule } from '@/store/user';
+import QuerySnapshot = firebase.firestore.QuerySnapshot;
+
+function mapDateAndId(querySnapshot: QuerySnapshot, tasks: any[]) {
+  querySnapshot.forEach((doc) => {
+    tasks.push({
+      ...doc.data(),
+      date: doc.data().date.toDate(),
+      id: doc.id,
+    });
+  });
+}
 
 @Module({ name: 'task', store, dynamic: true })
 class Task extends VuexModule {
-  tasks: TTask[] = [];
-  task: TTask | null = null;
+  mTasks: TTask[] = [];
+  mTask: TTask | null = null;
+
+  get tasks() {
+    return this.mTasks;
+  }
+
+  get task() {
+    return this.mTask;
+  }
 
   @Action({ commit: 'ADD_TASK' })
   async submitTask(task: string) {
@@ -25,30 +44,38 @@ class Task extends VuexModule {
   }
 
   @Action({ commit: 'TASKS_FETCHED' })
-  async fetchTasks() {
+  async fetchTasksFromCache() {
+    const tasks: any[] = [];
+    if (UserModule.user) {
+      try {
+        const querySnapshot = await firebase.firestore().collection(UserModule.user.uid).get({ source: 'cache' });
+        mapDateAndId(querySnapshot, tasks);
+      } catch (ignore) {
+        // ignore
+      }
+      this.fetchTasksFromNetwork();
+    }
+    return tasks;
+  }
+
+  @Action({ commit: 'TASKS_FETCHED' })
+  async fetchTasksFromNetwork() {
+    const tasks: any[] = [];
     if (UserModule.user) {
       const querySnapshot = await firebase.firestore().collection(UserModule.user.uid).get();
-      const tasks: any[] = [];
-      querySnapshot.forEach((doc) => {
-        tasks.push({
-          ...doc.data(),
-          date: doc.data().date.toDate(),
-          id: doc.id,
-        });
-      });
-      return tasks;
+      mapDateAndId(querySnapshot, tasks);
     }
-    throw Error('fetchTasks: user is not logged');
+    return tasks;
   }
 
   @Mutation
   ADD_TASK(task: any) {
-    this.tasks = [task, ...this.tasks];
+    this.mTasks = [task, ...this.mTasks];
   }
 
   @Mutation
   TASKS_FETCHED(tasks: any[]) {
-    this.tasks = [...tasks];
+    this.mTasks = [...tasks];
   }
 
   @Mutation
@@ -58,15 +85,15 @@ class Task extends VuexModule {
 
   @Mutation
   TASK_GET(task: TTask) {
-    this.task = task;
+    this.mTask = task;
   }
 
   @Mutation
   DEL_TASK(id: string) {
-    const index = this.tasks.findIndex((t) => t.id === id);
-    const tasks = [...this.tasks];
+    const index = this.mTasks.findIndex((t) => t.id === id);
+    const tasks = [...this.mTasks];
     tasks.splice(index, 1);
-    this.tasks = tasks;
+    this.mTasks = tasks;
   }
 
   @Action({ commit: 'TASK_SAVED' })
@@ -80,11 +107,11 @@ class Task extends VuexModule {
 
   @Action({ commit: 'TASK_GET' })
   async getTask(id: string) {
-    let task = this.tasks.find((t) => t.id === id);
+    let task = this.mTasks.find((t) => t.id === id);
     if (task) {
       return task;
     }
-    const tasks = await this.fetchTasks();
+    const tasks = await this.fetchTasksFromCache();
     task = tasks.find((t) => t.id === id);
     if (task) {
       return task;

@@ -6,7 +6,7 @@
   import Component from 'vue-class-component';
   import Vue from 'vue';
   import EditTemplate from '@/templates/EditTemplate.vue';
-  import {TaskModule} from '@/store/task';
+  import { TaskModule } from '@/store/task';
   import router from '@/router';
 
   @Component({

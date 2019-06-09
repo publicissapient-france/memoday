@@ -1,6 +1,6 @@
 <template>
   <div class="tasks-by-days">
-    <div v-if="tasks.length > 0">
+    <div v-if="tasks && tasks.length > 0">
       <div v-for="d in Object.keys(tasksByDays)" :key="d.key">
         <h2>{{getDayNameHeader(tasksByDays[d][0].date)}} <span>{{formatDay(tasksByDays[d][0].date)}}</span></h2>
         <tasks :tasks="tasksByDays[d]" :onTaskClick="onTaskClick"></tasks>
