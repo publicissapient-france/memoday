@@ -6,7 +6,6 @@ const corsHandler = cors({ origin: true });
 
 admin.initializeApp();
 
-// noinspection JSUnusedGlobalSymbols
 export const subscribeToTopic = functions.https.onRequest(async (request, response) => {
   corsHandler(request, response, async () => {
     try {
@@ -18,3 +17,31 @@ export const subscribeToTopic = functions.https.onRequest(async (request, respon
     }
   });
 });
+
+// @ts-ignore
+export const scheduleSendMessageToReminderTopic = functions.pubsub.schedule('55 11,17 * * *')
+  .timeZone('Europe/Paris')
+  .onRun(async () => {
+    await admin.messaging().send({
+      topic: 'reminder',
+      notification: {
+        body: 'Any achievements to write down?',
+        title: 'Hands up 🙌'
+      },
+      webpush: {
+        headers: {
+          Urgency: 'high'
+        },
+        notification: {
+          body: 'Any achievements to write down?',
+          title: 'Hands up 🙌',
+          requireInteraction: true,
+          icon: '/img/icons/favicon-196x196.png',
+          badge: '/img/notification.png'
+        },
+        fcmOptions: {
+          link: 'https://memoday-e29ea.firebaseapp.com/'
+        }
+      }
+    });
+  });
