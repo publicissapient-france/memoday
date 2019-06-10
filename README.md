@@ -1,6 +1,6 @@
 [![CircleCI](https://circleci.com/gh/xebia-france/memoday.svg?style=svg)](https://circleci.com/gh/xebia-france/memoday)
 
-# Memoday
+# MemoDay
 
 <p align="center">
   <img src="https://memoday-e29ea.firebaseapp.com/img/icons/favicon-196x196.png" width="100px"/>
