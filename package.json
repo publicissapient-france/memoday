@@ -21,7 +21,7 @@
   },
   "homepage": "https://github.com/xebia-france/memoday#readme",
   "devDependencies": {
-    "firebase-tools": "^6.6.0",
+    "firebase-tools": "^6.11.0",
     "tslint": "^5.15.0",
     "typescript": "^3.4.2"
   },
