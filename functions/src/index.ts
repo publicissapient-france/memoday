@@ -39,7 +39,7 @@ export const scheduleSendMessageToReminderTopic = functions.pubsub.schedule('55 
           icon: '/img/icons/favicon-196x196.png',
           badge: '/img/notification.png'
         },
-        fcmOptions: {
+        fcm_options: {
           link: 'https://memoday-e29ea.firebaseapp.com/'
         }
       }
