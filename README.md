@@ -8,7 +8,7 @@
 
 MemoDay is an app to track down every achievements you have made day to day.
 
-> It can be a companion for your daily, a reminder of the last time you water your orchids and much more.
+It can be a companion for your daily, a reminder of the last time you water your orchids and much more.
 
 ## CI & CD
 * Commit to `master` triggers build and deploy on Hosting.
