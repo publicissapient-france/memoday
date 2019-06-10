@@ -13,11 +13,3 @@ MemoDay is an app to track down every achievements you have made day to day.
 ## CI & CD
 * Commit to `master` triggers build and deploy on Hosting.
 * Commit on branch triggers build only (no deployment).
-
-## Links
-
-Firebase Console: https://console.firebase.google.com/project/memoday-e29ea/overview
-
-Hosting URL: https://memoday-e29ea.firebaseapp.com
-
-Hotjar: https://insights.hotjar.com/sites/1270800/dashboard
