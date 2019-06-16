@@ -19,7 +19,7 @@ export const subscribeToTopic = functions.https.onRequest(async (request, respon
 });
 
 // @ts-ignore
-export const scheduleSendMessageToReminderTopic = functions.pubsub.schedule('55 11,17 * * *')
+export const scheduleSendMessageToReminderTopic = functions.pubsub.schedule('55 11,17 * * 1,2,3,4,5')
   .timeZone('Europe/Paris')
   .onRun(async () => {
     await admin.messaging().send({
