@@ -44,21 +44,6 @@ class Task extends VuexModule {
   }
 
   @Action({ commit: 'TASKS_FETCHED' })
-  async fetchTasksFromCache() {
-    const tasks: any[] = [];
-    if (UserModule.user) {
-      try {
-        const querySnapshot = await firebase.firestore().collection(UserModule.user.uid).get({ source: 'cache' });
-        mapDateAndId(querySnapshot, tasks);
-      } catch (ignore) {
-        // ignore
-      }
-      this.fetchTasksFromNetwork();
-    }
-    return tasks;
-  }
-
-  @Action({ commit: 'TASKS_FETCHED' })
   async fetchTasksFromNetwork() {
     const tasks: any[] = [];
     if (UserModule.user) {
@@ -111,7 +96,7 @@ class Task extends VuexModule {
     if (task) {
       return task;
     }
-    const tasks = await this.fetchTasksFromCache();
+    const tasks = await this.fetchTasksFromNetwork();
     task = tasks.find((t) => t.id === id);
     if (task) {
       return task;

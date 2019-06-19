@@ -34,7 +34,7 @@
     };
 
     async mounted() {
-      TaskModule.fetchTasksFromCache();
+      TaskModule.fetchTasksFromNetwork();
     }
   }
 </script>
