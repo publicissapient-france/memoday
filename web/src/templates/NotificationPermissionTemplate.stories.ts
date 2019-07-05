@@ -11,7 +11,7 @@ const loading = {
 };
 
 storiesOf('Template | NotificationPermission', module)
-  .add('with many tasks', () => ({
+  .add('default', () => ({
     data() {
       return {
         loading,

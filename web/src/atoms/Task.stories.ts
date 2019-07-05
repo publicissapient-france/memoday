@@ -4,6 +4,6 @@ import Vue from 'vue';
 
 Vue.component('Task', Task);
 
-storiesOf('Atoms | TTask', module)
+storiesOf('Atoms | Task', module)
   .add('with name', () => '<task>Task created</task>')
   .add('with emoji', () => '<task>Task created 🚀</task>');

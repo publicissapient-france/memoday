@@ -1,7 +1,7 @@
-import {storiesOf} from '@storybook/vue';
+import { storiesOf } from '@storybook/vue';
 import Vue from 'vue';
 import HomeTemplate from '@/templates/HomeTemplate';
-import {action} from '@storybook/addon-actions';
+import { action } from '@storybook/addon-actions';
 
 Vue.component('HomeTemplate', HomeTemplate);
 
@@ -58,6 +58,25 @@ storiesOf('Template | Home', module)
               date: '2019-04-28T16:14:00.000+02:00',
             },
           ],
+        },
+        actions: {
+          submitTask(task: string) {
+            action('submitTask')(task);
+          },
+          onTaskClick(id: string) {
+            action('onTaskClick')(id);
+          },
+        },
+      };
+    },
+    template: `<home-template :data="data" :actions="actions"></home-template>`,
+  }))
+  .add('with no task', () => ({
+    data() {
+      return {
+        data: {
+          day: new Date('Sun Apr 28 2019 15:00:00 GMT+0200'),
+          tasks: [],
         },
         actions: {
           submitTask(task: string) {

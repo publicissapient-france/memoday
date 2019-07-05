@@ -65,4 +65,17 @@ storiesOf('Organisms | TasksByDays', module)
                   :tasks="tasks"
                   :day="new Date('Sun Apr 28 2019 15:00:00 GMT+0200')"
                   :onTaskClick="onTaskClick"></tasks-by-days>`,
+  }))
+  .add('with no task', () => ({
+    data() {
+      return {
+        tasks: [
+        ],
+        onTaskClick,
+      };
+    },
+    template: `<tasks-by-days
+                  :tasks="tasks"
+                  :day="new Date('Sun Apr 28 2019 15:00:00 GMT+0200')"
+                  :onTaskClick="onTaskClick"></tasks-by-days>`,
   }));

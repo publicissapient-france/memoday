@@ -1,8 +1,7 @@
 <template>
   <section class="messaging-permission has-text-centered">
     <div class="body">
-      <img src="./logo.png">
-      <h1 class="is-size-1">Welcome to MemoDay</h1>
+      <hero></hero>
       <p>In order to provide a great experience MemoDay would like to send you notifications reminders twice a day to
         write down your
         achievements.</p>
@@ -28,8 +27,13 @@
   import Component from 'vue-class-component';
   import Vue from 'vue';
   import { Prop } from 'vue-property-decorator';
+  import Hero from '@/atoms/Hero.vue';
 
-  @Component
+  @Component({
+    components: {
+      Hero,
+    },
+  })
   export default class NotificationPermissionTemplate extends Vue {
     @Prop()
     loading: { allow: boolean, disallow: boolean };
@@ -43,15 +47,6 @@
 </script>
 
 <style scoped lang="scss">
-  img {
-    height: 100px;
-    margin: 30px;
-  }
-
-  h1 {
-    margin: 20px 20px 50px 20px;
-  }
-
   p {
     margin: 20px;
   }

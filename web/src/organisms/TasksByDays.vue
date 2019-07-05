@@ -6,14 +6,25 @@
         <tasks :tasks="tasksByDays[d]" :onTaskClick="onTaskClick"></tasks>
       </div>
     </div>
+    <div class="is-empty" v-else>
+      <hero></hero>
+      <p>You can add new achievement by typing it in bottom input field ✏️</p>
+      <b-icon
+        icon="download"
+        size="is-large"
+        type="is-primary"
+        id="ic-see">️
+      </b-icon>
+    </div>
   </div>
 </template>
 
 <script lang="ts">
   import Vue from 'vue';
-  import {Component, Prop} from 'vue-property-decorator';
-  import {parse, isAfter, differenceInCalendarDays, isToday, isYesterday, getDay, format} from 'date-fns';
+  import { Component, Prop } from 'vue-property-decorator';
+  import { parse, isAfter, differenceInCalendarDays, isToday, isYesterday, getDay, format } from 'date-fns';
   import Tasks from '@/molecules/Tasks.vue';
+  import Hero from '@/atoms/Hero.vue';
 
   const DAY_OF_WEEK = [
     'Sunday',
@@ -28,6 +39,7 @@
   @Component({
     components: {
       Tasks,
+      Hero,
     },
   })
   export default class TasksByDays extends Vue {
@@ -37,7 +49,7 @@
     @Prop()
     onTaskClick: (id: string) => void;
 
-    @Prop({default: () => new Date()})
+    @Prop({ default: () => new Date() })
     day: Date;
 
     get tasksByDays() {
@@ -84,5 +96,13 @@
       font-family: 'Open Sans', sans-serif;
       font-size: 14px;
     }
+  }
+
+  p {
+    margin: 20px 0 40px 0;
+  }
+
+  .is-empty {
+    text-align: center;
   }
 </style>
