@@ -1,7 +1,7 @@
-import {storiesOf} from '@storybook/vue';
+import { storiesOf } from '@storybook/vue';
 import TasksByDays from '@/organisms/TasksByDays';
 import Vue from 'vue';
-import {action} from '@storybook/addon-actions';
+import { action } from '@storybook/addon-actions';
 
 Vue.component('TasksByDays', TasksByDays);
 
@@ -75,6 +75,20 @@ storiesOf('Organisms | TasksByDays', module)
       };
     },
     template: `<tasks-by-days
+                  :tasks="tasks"
+                  :day="new Date('Sun Apr 28 2019 15:00:00 GMT+0200')"
+                  :onTaskClick="onTaskClick"></tasks-by-days>`,
+  }))
+  .add('with loading', () => ({
+    data() {
+      return {
+        tasks: [],
+        onTaskClick,
+        loading: true,
+      };
+    },
+    template: `<tasks-by-days
+                  :loading="loading"
                   :tasks="tasks"
                   :day="new Date('Sun Apr 28 2019 15:00:00 GMT+0200')"
                   :onTaskClick="onTaskClick"></tasks-by-days>`,

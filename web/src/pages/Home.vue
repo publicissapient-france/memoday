@@ -8,7 +8,7 @@
   import Component from 'vue-class-component';
   import Vue from 'vue';
   import HomeTemplate from '@/templates/HomeTemplate.vue';
-  import {TaskModule} from '@/store/task';
+  import { TaskModule } from '@/store/task';
   import router from '@/router';
 
   @Component({
@@ -21,6 +21,7 @@
     get d() {
       return {
         tasks: TaskModule.tasks,
+        loading: TaskModule.tasks === null,
       };
     }
 

@@ -6,25 +6,21 @@
         <tasks :tasks="tasksByDays[d]" :onTaskClick="onTaskClick"></tasks>
       </div>
     </div>
-    <div class="is-empty" v-else>
-      <hero></hero>
-      <p>You can add new achievement by typing it in bottom input field ✏️</p>
-      <b-icon
-        icon="download"
-        size="is-large"
-        type="is-primary"
-        id="ic-see">️
-      </b-icon>
+    <div v-else-if="loading">
+      <tasks-loading></tasks-loading>
     </div>
+    <hint-add-achievement v-else></hint-add-achievement>
   </div>
 </template>
 
 <script lang="ts">
   import Vue from 'vue';
   import { Component, Prop } from 'vue-property-decorator';
-  import { parse, isAfter, differenceInCalendarDays, isToday, isYesterday, getDay, format } from 'date-fns';
+  import { differenceInCalendarDays, format, getDay, isAfter, isToday, isYesterday, parse } from 'date-fns';
   import Tasks from '@/molecules/Tasks.vue';
   import Hero from '@/atoms/Hero.vue';
+  import HintAddAchievement from '@/molecules/HintAddAchievement.vue';
+  import TasksLoading from '@/molecules/TasksLoading.vue';
 
   const DAY_OF_WEEK = [
     'Sunday',
@@ -38,6 +34,8 @@
 
   @Component({
     components: {
+      TasksLoading,
+      HintAddAchievement,
       Tasks,
       Hero,
     },
@@ -51,6 +49,9 @@
 
     @Prop({ default: () => new Date() })
     day: Date;
+
+    @Prop()
+    loading: boolean;
 
     get tasksByDays() {
       const dateTasks = this.tasks.map((t) => {
@@ -87,22 +88,5 @@
 </script>
 
 <style scoped lang="scss">
-  h2 {
-    margin-top: 10px;
-    margin-bottom: 15px;
 
-    span {
-      color: #ababab;
-      font-family: 'Open Sans', sans-serif;
-      font-size: 14px;
-    }
-  }
-
-  p {
-    margin: 20px 0 40px 0;
-  }
-
-  .is-empty {
-    text-align: center;
-  }
 </style>

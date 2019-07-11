@@ -1,7 +1,10 @@
 <template>
   <div class="home">
     <div v-if="data" class="home-with-data">
-      <tasks-by-days :tasks="data.tasks" :day="data.day" :onTaskClick="actions.onTaskClick"></tasks-by-days>
+      <tasks-by-days :day="data.day"
+                     :loading="data.loading"
+                     :onTaskClick="actions.onTaskClick"
+                     :tasks="data.tasks"></tasks-by-days>
       <submit-task :onSubmit="actions.submitTask"></submit-task>
     </div>
   </div>
@@ -11,7 +14,7 @@
   import Component from 'vue-class-component';
   import Vue from 'vue';
   import TasksByDays from '@/organisms/TasksByDays.vue';
-  import {Prop} from 'vue-property-decorator';
+  import { Prop } from 'vue-property-decorator';
   import SubmitTask from '@/molecules/SubmitTask.vue';
 
   @Component({

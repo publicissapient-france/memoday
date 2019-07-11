@@ -89,4 +89,24 @@ storiesOf('Template | Home', module)
       };
     },
     template: `<home-template :data="data" :actions="actions"></home-template>`,
+  }))
+  .add('with loading', () => ({
+    data() {
+      return {
+        data: {
+          day: new Date('Sun Apr 28 2019 15:00:00 GMT+0200'),
+          tasks: [],
+          loading: true,
+        },
+        actions: {
+          submitTask(task: string) {
+            action('submitTask')(task);
+          },
+          onTaskClick(id: string) {
+            action('onTaskClick')(id);
+          },
+        },
+      };
+    },
+    template: `<home-template :data="data" :actions="actions"></home-template>`,
   }));

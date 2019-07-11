@@ -16,7 +16,7 @@ function mapDateAndId(querySnapshot: QuerySnapshot, tasks: any[]) {
 
 @Module({ name: 'task', store, dynamic: true })
 class Task extends VuexModule {
-  mTasks: TTask[] = [];
+  mTasks: TTask[] | null = null;
   mTask: TTask | null = null;
 
   get tasks() {
@@ -55,7 +55,7 @@ class Task extends VuexModule {
 
   @Mutation
   ADD_TASK(task: any) {
-    this.mTasks = [task, ...this.mTasks];
+    this.mTasks = this.mTasks ? [task, ...this.mTasks] : [task];
   }
 
   @Mutation
@@ -75,10 +75,12 @@ class Task extends VuexModule {
 
   @Mutation
   DEL_TASK(id: string) {
-    const index = this.mTasks.findIndex((t) => t.id === id);
-    const tasks = [...this.mTasks];
-    tasks.splice(index, 1);
-    this.mTasks = tasks;
+    if (this.mTasks) {
+      const index = this.mTasks.findIndex((t) => t.id === id);
+      const tasks = [...this.mTasks];
+      tasks.splice(index, 1);
+      this.mTasks = tasks;
+    }
   }
 
   @Action({ commit: 'TASK_SAVED' })
@@ -92,7 +94,7 @@ class Task extends VuexModule {
 
   @Action({ commit: 'TASK_GET' })
   async getTask(id: string) {
-    let task = this.mTasks.find((t) => t.id === id);
+    let task = this.mTasks ? this.mTasks.find((t) => t.id === id) : null;
     if (task) {
       return task;
     }
